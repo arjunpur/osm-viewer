@@ -6,24 +6,32 @@ import "leaflet/dist/leaflet.css";
 
 var Leaflet = React.createClass({
   _onEditPath: function() {
-      console.log("hi");
   },
-  _onCreate: function() {
-      console.log("more hi");
+  _onCreate: function(e) {
+      let layer = e.layer;
+      let geoJson = layer.toGeoJSON();a
+      console.log(layer.toGeoJSON());
+      $.ajax({
+        type: 'POST',
+        url: 'www.localhost:8080/getVectorElevationOverlay',
+        data: data
+      })
+      .done(function(data) {
+          /* This needs to be rendered */
+          let elevationOverlay = date
+      })
+      .fail(function(jqXhr) {
+        console.log('failed to register');
+      });
   },
   _mounted: function() {
-      console.log("mounted");
   },
   _onDeleted: function() {
-      console.log("deleted");
   },
   render: function() {
     const style = {
       minHeight: "800px", width: "100%"
     };
-    let mapLayers = _.map(this.props.url, u => {
-      return <TileLayer url={u} />;
-    });
 
     return (
       <Map center ={[37.062,-121.530]} zoom={8} style={style} bounds={this.props.bounds}>
@@ -42,7 +50,6 @@ var Leaflet = React.createClass({
           }}
         />
     </FeatureGroup>
-        {mapLayers}
       </Map>
     );
 

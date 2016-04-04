@@ -15,21 +15,8 @@ var App = React.createClass({
     return (
       <div className="row">
 
-        <div className="col-md-9">
+        <div className="col-md-12">
           <Leaflet url={this.props.map.url} bounds={this.props.map.bounds} />
-        </div>
-
-        <div className="col-md-3">
-          <Catalog
-            defaultUrl={this.props.rootUrl}
-            bounds={this.props.map.bounds}
-            onSubmit={url => this.props.actions.fetchCatalog(url)} />
-          <MapViews
-            rootUrl={this.props.rootUrl}
-            layers={this.props.catalog.layers }
-            showExtent={this.props.actions.showExtent}
-            showLayer={this.props.actions.showLayer}
-            showLayerWithBreaks={this.props.actions.showLayerWithBreaks} />
         </div>
 
       </div>
